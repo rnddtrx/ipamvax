@@ -1,0 +1,182 @@
+openapi: 3.0.3
+info:
+  title: API IpamVax
+  description: API IpamVax
+  termsOfService: Exemple
+  contact:
+    email: renaud.dutrieux@hainaut-promsoc.be
+  version: 1.0.0
+externalDocs:
+  description: Any document link you want to generate along with API.
+  url: http://swagger.io
+servers:
+  - url: https://test.ipam.be/v1
+tags:
+  - name: People
+    description: A patient
+    externalDocs:
+      description: Find out more (extra document link)
+      url: http://swagger.io
+  - name: PeopleSchedule
+    description: A schedule for a patient  
+    externalDocs:
+      description: Find out more (extra document link)
+      url: http://swagger.io
+  - name: VaxCentre
+    description: A vaccination centre
+    externalDocs:
+      description: Find out more (extra document link)
+      url: http://swagger.io
+paths:
+  /api/v1/people/{peopleId}:
+    get:
+      tags:
+        - People
+      summary: Get a patient
+      description: Get a patient
+      operationId: getPeopleById
+      parameters:
+        - name: peopleId
+          in: path
+          description: People Identifier
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/People'
+        '404':
+          description: Given user ID doesn't exist
+          content: {}
+    delete:
+      tags:
+        - People
+      summary: Delete the patient
+      description: Delete a patient
+      operationId: deletePeopleById
+      parameters:
+        - name: peopleId
+          in: path
+          description: people Identifier
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: No content
+    post:
+      tags:
+        - People
+      summary: Create the patient
+      description: update the people
+      operationId: updateUser
+      parameters:
+        - name: peopleId
+          in: path
+          description: people Identifier
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: people object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/People'
+      responses:
+        '200':
+          description: Updated
+  /api/v1/people:
+    put:
+      tags:
+        - People
+      summary: Create the patient
+      description: create the people
+      operationId: createUser
+      requestBody:
+        description: people object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/People'
+      responses:
+        '201':
+          description: Created
+components:
+  schemas:
+    People:
+      description: A patient
+      type: object
+      properties:
+        peopleId:
+          description: People ID
+          type: number
+        firstname:
+          description: Firstname
+          type: string
+        lastname:
+          description: Lastname
+          type: string
+        nationalNumber:
+          description: national number
+          type: string
+        password:
+          description: password
+          type: string
+        dateOfBirth:
+          description: dob
+          type: string
+        placeOfBirth:
+          description: pob
+          type: string
+        countryOfBirth:
+          description: cob
+          type: string
+        addressStreet:
+          description: Address
+          type: string
+        addressNumber:
+          description: Number
+          type: string
+        addressPostalCode:
+          description: Postcode
+          type: string
+        addressCity:
+          description: City
+          type: string
+        peopleSchedules:
+          description: Collection of schedule.
+          type: array
+          items:
+            $ref: '#/components/schemas/PeopleSchedule'
+    PeopleSchedule:
+      description: Schedule
+      type: object
+      properties:
+        scheduleId:
+          description: Schedule ID
+          type: number
+        startTime:
+          description: Start Time
+          type: string
+        people:
+            $ref: '#/components/schemas/People'
+        vaxCentre:
+            $ref: '#/components/schemas/VaxCentre'    
+    VaxCentre:
+      description: VaxCentre
+      type: object
+      properties:
+        vaxCentreId:
+          description: vaxCentre ID
+          type: number
+        peopleSchedules:
+          description: Collection of schedule.
+          type: array
+          items:
+            $ref: '#/components/schemas/PeopleSchedule'
+        

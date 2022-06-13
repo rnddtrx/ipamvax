@@ -1,0 +1,31 @@
+{
+
+  "library": "spring-mvc",
+
+  "dateLibrary": "java8",
+
+  "hideGenerationTimestamp": true,
+
+  "modelPackage": "be.ipam.IpamVax.api.model",
+
+  "apiPackage": "be.ipam.IpamVax.api",
+
+  "invokerPackage": "be.ipam.IpamVax.api",
+
+  "serializableModel": true,
+
+  "useTags": true,
+
+  "useGzipFeature" : true,
+
+  "hateoas": true,
+
+  "withXml": false,
+  
+  "importMappings": {
+
+      "Link": "org.springframework.hateoas.Link"
+
+  }
+
+}
