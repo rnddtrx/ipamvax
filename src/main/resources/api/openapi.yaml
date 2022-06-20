@@ -106,6 +106,87 @@ paths:
       responses:
         '201':
           description: Created
+  /api/v1/vaxcentre/{vaxCentreId}:
+    get:
+      tags:
+        - VaxCentre
+      summary: Get a vaxcentre
+      description: Get a vaxcenter
+      operationId: getVaxCenterById
+      parameters:
+        - name: vaxCentreId
+          in: path
+          description: Vaxcentre Identifier
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/VaxCentre'
+        '404':
+          description: Given vaxcentre ID doesn't exist
+          content: {}
+    delete:
+      tags:
+        - VaxCentre
+      summary: Delete the VaxCentre
+      description: Delete a VaxCentre
+      operationId: deleteVaxCentreById
+      parameters:
+        - name: vaxCentreId
+          in: path
+          description: people Identifier
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: No content
+    post:
+      tags:
+        - VaxCentre
+      summary: Create the VaxCentre
+      description: update the VaxCentre
+      operationId: updateVaxCentre
+      parameters:
+        - name: vaxCentreId
+          in: path
+          description: VaxCentre Identifier
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: VaxCentre object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VaxCentre'
+      responses:
+        '200':
+          description: Updated
+  /api/v1/vaxcentre:
+    put:
+      tags:
+        - VaxCentre
+      summary: Create the VaxCentre
+      description: create the VaxCentre
+      operationId: createVaxCentre
+      requestBody:
+        description: VaxCentre object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VaxCentre'
+      responses:
+        '201':
+          description: Created          
+          
+          
+          
 components:
   schemas:
     People:
@@ -174,6 +255,18 @@ components:
         vaxCentreId:
           description: vaxCentre ID
           type: number
+        name:
+          description: vaxCentre name
+          type: string
+        addressStreet:
+          description: vaxCentre street
+          type: string
+        addressNumber:
+          description: vaxCentre number
+          type: string
+        addressCity:
+          description: vaxCentre city
+          type: string
         peopleSchedules:
           description: Collection of schedule.
           type: array

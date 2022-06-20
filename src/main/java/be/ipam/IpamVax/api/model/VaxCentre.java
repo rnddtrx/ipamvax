@@ -26,6 +26,18 @@ public class VaxCentre extends RepresentationModel<VaxCentre>  implements Serial
   @JsonProperty("vaxCentreId")
   private BigDecimal vaxCentreId;
 
+  @JsonProperty("name")
+  private String name;
+
+  @JsonProperty("addressStreet")
+  private String addressStreet;
+
+  @JsonProperty("addressNumber")
+  private String addressNumber;
+
+  @JsonProperty("addressCity")
+  private String addressCity;
+
   @JsonProperty("peopleSchedules")
   @Valid
   private List<PeopleSchedule> peopleSchedules = null;
@@ -49,6 +61,86 @@ public class VaxCentre extends RepresentationModel<VaxCentre>  implements Serial
 
   public void setVaxCentreId(BigDecimal vaxCentreId) {
     this.vaxCentreId = vaxCentreId;
+  }
+
+  public VaxCentre name(String name) {
+    this.name = name;
+    return this;
+  }
+
+  /**
+   * vaxCentre name
+   * @return name
+  */
+  @ApiModelProperty(value = "vaxCentre name")
+
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public VaxCentre addressStreet(String addressStreet) {
+    this.addressStreet = addressStreet;
+    return this;
+  }
+
+  /**
+   * vaxCentre street
+   * @return addressStreet
+  */
+  @ApiModelProperty(value = "vaxCentre street")
+
+
+  public String getAddressStreet() {
+    return addressStreet;
+  }
+
+  public void setAddressStreet(String addressStreet) {
+    this.addressStreet = addressStreet;
+  }
+
+  public VaxCentre addressNumber(String addressNumber) {
+    this.addressNumber = addressNumber;
+    return this;
+  }
+
+  /**
+   * vaxCentre number
+   * @return addressNumber
+  */
+  @ApiModelProperty(value = "vaxCentre number")
+
+
+  public String getAddressNumber() {
+    return addressNumber;
+  }
+
+  public void setAddressNumber(String addressNumber) {
+    this.addressNumber = addressNumber;
+  }
+
+  public VaxCentre addressCity(String addressCity) {
+    this.addressCity = addressCity;
+    return this;
+  }
+
+  /**
+   * vaxCentre city
+   * @return addressCity
+  */
+  @ApiModelProperty(value = "vaxCentre city")
+
+
+  public String getAddressCity() {
+    return addressCity;
+  }
+
+  public void setAddressCity(String addressCity) {
+    this.addressCity = addressCity;
   }
 
   public VaxCentre peopleSchedules(List<PeopleSchedule> peopleSchedules) {
@@ -91,12 +183,16 @@ public class VaxCentre extends RepresentationModel<VaxCentre>  implements Serial
     }
     VaxCentre vaxCentre = (VaxCentre) o;
     return Objects.equals(this.vaxCentreId, vaxCentre.vaxCentreId) &&
+        Objects.equals(this.name, vaxCentre.name) &&
+        Objects.equals(this.addressStreet, vaxCentre.addressStreet) &&
+        Objects.equals(this.addressNumber, vaxCentre.addressNumber) &&
+        Objects.equals(this.addressCity, vaxCentre.addressCity) &&
         Objects.equals(this.peopleSchedules, vaxCentre.peopleSchedules);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(vaxCentreId, peopleSchedules);
+    return Objects.hash(vaxCentreId, name, addressStreet, addressNumber, addressCity, peopleSchedules);
   }
 
   @Override
@@ -105,6 +201,10 @@ public class VaxCentre extends RepresentationModel<VaxCentre>  implements Serial
     sb.append("class VaxCentre {\n");
     
     sb.append("    vaxCentreId: ").append(toIndentedString(vaxCentreId)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    addressStreet: ").append(toIndentedString(addressStreet)).append("\n");
+    sb.append("    addressNumber: ").append(toIndentedString(addressNumber)).append("\n");
+    sb.append("    addressCity: ").append(toIndentedString(addressCity)).append("\n");
     sb.append("    peopleSchedules: ").append(toIndentedString(peopleSchedules)).append("\n");
     sb.append("}");
     return sb.toString();
