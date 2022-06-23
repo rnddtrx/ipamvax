@@ -27,6 +27,11 @@ tags:
     externalDocs:
       description: Find out more (extra document link)
       url: http://swagger.io
+  - name: Vaccin
+    description: A vaccin
+    externalDocs:
+      description: Find out more (extra document link)
+      url: http://swagger.io
 paths:
   /api/v1/people/{peopleId}:
     get:
@@ -184,9 +189,84 @@ paths:
       responses:
         '201':
           description: Created          
-          
-          
-          
+  /api/v1/vaccin/{vaccinId}:
+    get:
+      tags:
+        - Vaccin
+      summary: Get a vaccin
+      description: Get a vaxcenter
+      operationId: getVaccinById
+      parameters:
+        - name: vaccinId
+          in: path
+          description: Vaccin Identifier
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Vaccin'
+        '404':
+          description: Given vaccin ID doesn't exist
+          content: {}
+    delete:
+      tags:
+        - Vaccin
+      summary: Delete the Vaccin
+      description: Delete a Vaccin
+      operationId: deleteVaccinById
+      parameters:
+        - name: vaccinId
+          in: path
+          description: vaccin Identifier
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: No content
+    post:
+      tags:
+        - Vaccin
+      summary: Create the Vaccin
+      description: update the Vaccin
+      operationId: updateVaccin
+      parameters:
+        - name: vaccinId
+          in: path
+          description: Vaccin Identifier
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Vaccin object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Vaccin'
+      responses:
+        '200':
+          description: Updated
+  /api/v1/vaccin:
+    put:
+      tags:
+        - Vaccin
+      summary: Create the vaccin
+      description: create the vaccin
+      operationId: createVaccin
+      requestBody:
+        description: vaccin object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Vaccin'
+      responses:
+        '201':
+          description: Created
 components:
   schemas:
     People:
@@ -272,4 +352,23 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PeopleSchedule'
+    Vaccin:
+      description: Vaccin
+      type: object
+      properties:
+        vaccinId:
+          description: vaccin ID
+          type: number
+        name:
+          description: vaccin name
+          type: string
+        ageMin:
+          description: age min
+          type: integer
+        doseMin:
+          description: dose min
+          type: integer
+        booster:
+          description: is booster
+          type: boolean
         
